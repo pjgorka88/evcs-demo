@@ -10,6 +10,8 @@ SpinBox {
     height: 34
     font.pointSize: Variables.controlSpinFontPoints
 
+    property bool indicatorText: true;
+
     contentItem: Rectangle
     {
         anchors.fill:parent
@@ -36,6 +38,7 @@ SpinBox {
         border.color: "#0b2a4a"
 
         Text {
+            visible: control.indicatorText
             text: "+"
             font.pixelSize: control.font.pixelSize * 2
             color: "#fefefe"
@@ -55,6 +58,7 @@ SpinBox {
         border.color: "#0b2a4a"
 
         Text {
+            visible: control.indicatorText
             text: "-"
             font.pixelSize: control.font.pixelSize * 2
             color: "#fefefe"

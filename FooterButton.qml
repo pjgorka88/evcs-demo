@@ -11,6 +11,7 @@ Button {
     width: 150
     font.pointSize: Variables.footerButtonPoints
     flat: true
+    opacity: 0
 
     contentItem: Label {
         color: "#ffffff"

@@ -44,5 +44,9 @@
         <file>PadType.qml</file>
         <file>PageCharging.qml</file>
         <file>SpinBoxPrice.qml</file>
+        <file>PopupInfo.qml</file>
+        <file>Assets/Background/EVCS_infobox_550x368.png</file>
+        <file>PopupMap.qml</file>
+        <file>Assets/Promo/Promo01.mp4</file>
     </qresource>
 </RCC>

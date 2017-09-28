@@ -69,6 +69,7 @@ Item {
             batteryBar.topValue = batteryItem.chargedPercentage;
             if ( chargedPercentage >= topUpCharge  )
             {
+                chargedPercentage = topUpCharge;
                 batteryItem.chargingStarted = false;
                 batteryItem.signalChargeCompleted();
             }

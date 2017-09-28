@@ -7,6 +7,8 @@ Item {
     signal valueChanged( real value );
     signal priceChanged( real value );
 
+    property bool indicatorText: true;
+
     function setChargeValue( value )
     {
         chargeSpinBox.from  = value;
@@ -23,8 +25,8 @@ Item {
 
     function setPriceValue( value )
     {
-        priceSpinBox.from = value;
-        priceSpinBox.to = value;
+        priceSpinBox.from  = value;
+        priceSpinBox.to    = value;
         priceSpinBox.value = value;
     }
 
@@ -52,6 +54,7 @@ Item {
     SpinBoxNumber
     {
         id: chargeSpinBox
+        indicatorText: root.indicatorText
         function updateValue( inValue )
         {
             chargeSpinBox.value = inValue * 100
@@ -70,6 +73,7 @@ Item {
     SpinBoxTime
     {
         id: timeSpinBox
+        indicatorText: root.indicatorText
         y: 60
 
         function updateValue( inValue )
@@ -92,6 +96,7 @@ Item {
     SpinBoxPrice
     {
         id: priceSpinBox
+        indicatorText: root.indicatorText
         y: 119
         stepSize: Variables.timeOnePercent * 100
 

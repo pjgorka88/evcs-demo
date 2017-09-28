@@ -16,6 +16,7 @@ Item {
     property alias rightButtonEnabled: rightButton.enabled
     property alias pageIndicatorcurrentIndex: pageIndicator.currentIndex
     property alias pageIndicatorcount: pageIndicator.count
+    property alias pageIndicatorVisible: pageIndicator.opacity
 
     RowLayout {
         anchors.fill: parent
@@ -32,6 +33,7 @@ Item {
 
         PageIndicator {
             id: pageIndicator
+            opacity: 0
             Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
         }
 

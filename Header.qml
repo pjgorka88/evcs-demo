@@ -4,7 +4,9 @@ import QtQuick.Layouts 1.3
 
 Item {
 
+    id: header
     signal openInfo
+    signal openMap
 
 // Left Positioner
     RowLayout
@@ -36,7 +38,7 @@ Item {
     {
         anchors.right: parent.right
         height: 50
-        spacing: 10
+        spacing: 15
         ComboBox
         {
             Layout.preferredWidth: 110
@@ -55,7 +57,6 @@ Item {
                         fillMode: Image.PreserveAspectFit
                         source: modelData
                     }
-                //highlighted: control.highlightedIndex === index
             }
 
             indicator: Canvas {
@@ -146,7 +147,7 @@ Item {
                 source: "Assets/Icons/EVCS_icon_map_31x31.png"
             }
             flat: true
-            //onClicked: header.openInfo();
+            onClicked: header.openMap();
         }
 
         Button
@@ -160,27 +161,7 @@ Item {
                 source: "Assets/Icons/EVCS_icon_info_30x31.png"
             }
             flat: true
-            //onClicked: header.openInfo();
+            onClicked: header.openInfo();
         }
     }
-    /**/
-
-    /*Button {
-        id: infoButton
-        x: parent.width - width - 20
-        y: 9
-        width: 30
-        height: 31
-        background: Image {
-            anchors.fill: parent
-            fillMode: Image.PreserveAspectFit
-            source: "Assets/Icons/EVCS_icon_info_30x31.png"
-        }
-        flat: true
-        onClicked: header.openInfo();
-    }*/
-
-
-    /**/
-
 }

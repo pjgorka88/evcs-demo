@@ -7,6 +7,11 @@ Page
     id: root
     signal paymentAccepted
 
+    function initializeValues()
+    {
+        textField.clear();
+    }
+
     background: Item
     {
 

@@ -5,6 +5,7 @@ import QtQuick.VirtualKeyboard 2.1
 import App 1.0
 
 ApplicationWindow {
+    id: mainWindow
     visible: true
     width: 800
     height: 480
@@ -13,17 +14,31 @@ ApplicationWindow {
     background: Image { source: "Assets/Background/EVCS_UI_background_800x480.jpg" }
 
     header: Header {
-            height: 50
-               /* onOpenInfo:
-                {
-                    popup.open();
-                }*/
-        }
+        height: 50
+         onOpenInfo:
+         {
+            infoPopup.open();
+         }
+
+         onOpenMap:
+         {
+             mapPopup.open();
+         }
+    }
+
+    PopupInfo
+    {
+        id: infoPopup
+    }
+
+    PopupMap
+    {
+        id: mapPopup
+    }
 
     footer: Footer {
         id: footerItem
         height: 63
-        visible: swipeView.currentIndex /*|| swipeView.currentIndex == 2 ? 0 : 1*/
         pageIndicatorcount: swipeView.count - 1
         onRightButtonReleased: swipeView.currentIndex == 3 ? swipeView.setCurrentIndex(0) : swipeView.incrementCurrentIndex()
         onLeftButtonReleased: swipeView.decrementCurrentIndex()
@@ -51,6 +66,7 @@ ApplicationWindow {
 
         PagePayment
         {
+            id: pagePayment
             onPaymentAccepted:
             {
                 footerItem.rightButtonEnabled = 1;
@@ -60,13 +76,26 @@ ApplicationWindow {
         PageCharging
         {
             id: pageCharging
+
+            onSignalChargeCompleted :
+            {
+                footerItem.rightButtonEnabled = 1
+            }
         }
 
         onCurrentIndexChanged: {
             footerItem.pageIndicatorcurrentIndex = swipeView.currentIndex - 1
+            footerItem.pageIndicatorVisible = swipeView.currentIndex > 0;
 
             switch (swipeView.currentIndex)
             {
+            case 0: // Promo page
+                footerItem.leftButtonVisible  = 0
+                footerItem.rightButtonVisible = 0
+                pageChargeSelect.initializeValues();
+                pagePayment.initializeValues();
+                infoPopup.setDescription( 0 )
+                break;
             case 1:  // PageChargeSelect
                 footerItem.leftButtonVisible = 1
                 footerItem.leftButtonEnabled = 1
@@ -74,6 +103,7 @@ ApplicationWindow {
                 footerItem.rightButtonVisible = 1
                 footerItem.rightButtonEnabled = ( pageChargeSelect.dialValue > Variables.initialCharge );
                 footerItem.rightButtonText = qsTr("Confirm")
+                infoPopup.setDescription( 1 )
                 break;
             case 2: // PagePayment
                 footerItem.leftButtonVisible = 1
@@ -82,6 +112,7 @@ ApplicationWindow {
                 footerItem.rightButtonVisible = 1
                 footerItem.rightButtonEnabled = 0
                 footerItem.rightButtonText = qsTr("Continue")
+                infoPopup.setDescription( 2 )
                 break;
             case 3: // PageChargeConfirm
                 footerItem.leftButtonVisible = 0
@@ -89,10 +120,11 @@ ApplicationWindow {
                 footerItem.rightButtonVisible = 1
                 footerItem.rightButtonEnabled = 0
                 footerItem.rightButtonText = qsTr("Done")
-                pageCharging.batteryInfo.topUpCharge = Math.floor( pageChargeSelect.dialValue )
+                pageCharging.batteryInfo.topUpCharge = pageChargeSelect.dialValue
                 pageCharging.batteryInfo.chargingStarted = true;
                 pageCharging.batteryInfo.initialCharge = Variables.initialCharge
                 pageCharging.batteryInfo.initializeValues();
+                infoPopup.setDescription( 3 )
                 break;
             }
         }
