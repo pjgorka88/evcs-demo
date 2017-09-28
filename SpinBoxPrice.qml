@@ -4,18 +4,24 @@ import QtQuick.Controls 2.1
 SpinBoxBase
 {
     id: infoSpinBox
+    to: 100 * 100
+
+    property int decimals: 2
+    property real realValue: value / 100
+
+    validator: DoubleValidator {
+        bottom: Math.min(infoSpinBox.from, infoSpinBox.to)
+        top:  Math.max(infoSpinBox.from, infoSpinBox.to)
+    }
 
     textFromValue: function(value, locale) {
-
-        var numberValue = Number( value ).toLocaleString(locale, 'f', 2);
-        if ( value <  10 )
-            numberValue = "0"+  numberValue
-        console.log( numberValue )
-        return numberValue
+        var numberValue = Number(value / 100).toLocaleString(locale, 'f', infoSpinBox.decimals)
+        if ( ( value / 100 ) <  10 )
+            numberValue = "0" +  numberValue
+        return numberValue + " \u20ac"
     }
 
     valueFromText: function(text, locale) {
-        console.log(text.substring(0, text.lenght-2) )
-        return  text.substring(0, text.lenght-2)
+        return Number.fromLocaleString(locale, text.substring(0, text.lenght-2)) * 100
     }
 }
