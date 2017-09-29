@@ -7,14 +7,30 @@ Page {
     id: root
     property alias batteryInfo: battery
 
+    function initializeValues()
+    {
+        infoText.text = qsTr( "Charging" )
+        battery.initializeValues();
+    }
+
     signal signalChargeCompleted();
 
     Component.onCompleted:
     {
         spinBoxes.indicatorText = false;
+        spinBoxes.chargingVisible = false;
     }
 
     background: Item {
+
+        Image {
+            x: 40
+            y: 60
+            width: 554
+            height: 240
+            fillMode: Image.PreserveAspectFit
+            source: "Assets/Select/EVCS_dial_554x220_top.png"
+        }
 
         InfoSpinBoxes
         {
@@ -23,6 +39,19 @@ Page {
             y:103
             width:230
             height: 150
+
+            Text
+            {
+                id: chargingText
+                color: "#42cc53"
+                text: qsTr( "Charging in progress" )
+                width: 230
+                height: 34
+                x: 20
+                font.pointSize: 16
+                horizontalAlignment: Qt.AlignLeft
+                verticalAlignment: Qt.AlignVCenter
+            }
 
         }
 
@@ -34,28 +63,38 @@ Page {
 
             onChargedPercentageChanged :
             {
-                spinBoxes.setChargeValue( chargedPercentage * 100 )
-                spinBoxes.setTimeValue( ( battery.topUpCharge - chargedPercentage ) * Variables.timeOnePercent * 100 )
-                spinBoxes.setPriceValue( ( chargedPercentage - battery.initialCharge) * Variables.priceOnePercent * 100 )
+                updateSpinBoxes( chargedPercentage )
             }
 
             onSignalChargeCompleted:
             {
-                spinBoxes.setChargeValue( chargedPercentage * 100 )
-                spinBoxes.setTimeValue( ( battery.topUpCharge - chargedPercentage ) * Variables.timeOnePercent * 100 )
-                spinBoxes.setPriceValue( ( chargedPercentage - battery.initialCharge) * Variables.priceOnePercent * 100 )
+                updateSpinBoxes( chargedPercentage )
+                chargingText.text = qsTr( "Charging Complete" )
                 root.signalChargeCompleted();
+            }
+
+            function updateSpinBoxes( value )
+            {
+                var strvalue = Number(Math.floor(value)).toLocaleString(locale, 'f', 0) + "%";
+                if ( value < 10 )
+                    strvalue = "0" + strvalue;
+                infoText.text = strvalue;
+                spinBoxes.setChargeValue( value * 100 )
+                spinBoxes.setTimeValue( ( battery.topUpCharge - value ) * Variables.timeOnePercent * 100 )
+                spinBoxes.setPriceValue( ( value - battery.initialCharge) * Variables.priceOnePercent * 100 )
             }
         }
 
         Text
         {
-            x: 50
+            id: infoText
+            x: 120
             anchors.verticalCenter: parent.verticalCenter
-            color: "#ffffff"
-            text: qsTr("Charging")
-            font.pointSize: 36
-            font.bold: true
+            color: "#42cc53"
+            text: "00%"
+            font.pointSize: 38
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
         }
     }
 }

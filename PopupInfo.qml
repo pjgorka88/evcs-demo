@@ -20,6 +20,7 @@ Popup {
     property variant decriptions:
         [
         qsTr( "Please tap to start for entering your credentials and start charging your car" ),
+        qsTr( "Please enter your credential in the system" ),
         qsTr( "Please set the charge that you want achieve using the rotational Knob" ),
         qsTr( "Please add your pin number in order to start the charge" ),
         qsTr( "Charging information status" )

@@ -45,7 +45,6 @@ Page
             anchors.left: textEnterPIN.right
             anchors.top: textEnterPIN.top
             anchors.bottom: textEnterPIN.bottom
-            anchors.bottomMargin: -5
             anchors.leftMargin: 10
             border.width: 2
             color: "transparent"
@@ -59,6 +58,7 @@ Page
                 text: ""
                 font.pointSize: 18
                 horizontalAlignment: TextInput.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
 
                 function clear()
                 {

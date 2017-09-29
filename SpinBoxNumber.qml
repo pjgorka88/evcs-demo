@@ -15,10 +15,10 @@ SpinBoxBase
     }
 
     textFromValue: function(value, locale) {
-        return Number(value / 100).toLocaleString(locale, 'f', infoSpinBox.decimals)
+        return Number(value / 100).toLocaleString(locale, 'f', infoSpinBox.decimals) + "%"
     }
 
     valueFromText: function(text, locale) {
-        return Number.fromLocaleString(locale, text) * 100
+        return Number.fromLocaleString(locale, text.substring(0, text.lenght-1)) * 100
     }
 }

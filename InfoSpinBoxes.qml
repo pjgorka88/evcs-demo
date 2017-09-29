@@ -9,6 +9,8 @@ Item {
 
     property bool indicatorText: true;
 
+    property alias chargingVisible: chargeSpinBox.visible
+
     function setChargeValue( value )
     {
         chargeSpinBox.from  = value;

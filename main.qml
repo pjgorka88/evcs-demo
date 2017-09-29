@@ -40,7 +40,7 @@ ApplicationWindow {
         id: footerItem
         height: 63
         pageIndicatorcount: swipeView.count - 1
-        onRightButtonReleased: swipeView.currentIndex == 3 ? swipeView.setCurrentIndex(0) : swipeView.incrementCurrentIndex()
+        onRightButtonReleased: swipeView.currentIndex == (swipeView.count-1) ? swipeView.setCurrentIndex(0) : swipeView.incrementCurrentIndex()
         onLeftButtonReleased: swipeView.decrementCurrentIndex()
     }
 
@@ -52,6 +52,11 @@ ApplicationWindow {
         PagePromotionSpot
         {
             onNextPage: swipeView.incrementCurrentIndex()
+        }
+
+        PageAuthentication
+        {
+            id: pageAuthentication
         }
 
         PageChargeSelect
@@ -96,25 +101,33 @@ ApplicationWindow {
                 pagePayment.initializeValues();
                 infoPopup.setDescription( 0 )
                 break;
-            case 1:  // PageChargeSelect
-                footerItem.leftButtonVisible = 1
-                footerItem.leftButtonEnabled = 1
-                footerItem.leftButtonText = qsTr("Cancel")
+            case 1:  // PageAutentification
+                footerItem.leftButtonVisible  = 1
                 footerItem.rightButtonVisible = 1
-                footerItem.rightButtonEnabled = ( pageChargeSelect.dialValue > Variables.initialCharge );
+                footerItem.rightButtonEnabled = 1
+                footerItem.leftButtonText = qsTr("Cancel")
                 footerItem.rightButtonText = qsTr("Confirm")
                 infoPopup.setDescription( 1 )
                 break;
-            case 2: // PagePayment
+            case 2:  // PageChargeSelect
+                footerItem.leftButtonVisible = 1
+                footerItem.leftButtonEnabled = 1
+                footerItem.leftButtonText = qsTr("Back")
+                footerItem.rightButtonVisible = 1
+                footerItem.rightButtonEnabled = ( pageChargeSelect.dialValue > Variables.initialCharge );
+                footerItem.rightButtonText = qsTr("Confirm")
+                infoPopup.setDescription( 2 )
+                break;
+            case 3: // PagePayment
                 footerItem.leftButtonVisible = 1
                 footerItem.leftButtonEnabled = 1
                 footerItem.leftButtonText = qsTr("Back")
                 footerItem.rightButtonVisible = 1
                 footerItem.rightButtonEnabled = 0
                 footerItem.rightButtonText = qsTr("Continue")
-                infoPopup.setDescription( 2 )
+                infoPopup.setDescription( 3 )
                 break;
-            case 3: // PageChargeConfirm
+            case 4: // PageChargeConfirm
                 footerItem.leftButtonVisible = 0
                 footerItem.leftButtonEnabled = 0
                 footerItem.rightButtonVisible = 1
@@ -123,8 +136,8 @@ ApplicationWindow {
                 pageCharging.batteryInfo.topUpCharge = pageChargeSelect.dialValue
                 pageCharging.batteryInfo.chargingStarted = true;
                 pageCharging.batteryInfo.initialCharge = Variables.initialCharge
-                pageCharging.batteryInfo.initializeValues();
-                infoPopup.setDescription( 3 )
+                pageCharging.initializeValues();
+                infoPopup.setDescription( 4 )
                 break;
             }
         }

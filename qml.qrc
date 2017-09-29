@@ -48,5 +48,19 @@
         <file>Assets/Background/EVCS_infobox_550x368.png</file>
         <file>PopupMap.qml</file>
         <file>Assets/Promo/Promo01.mp4</file>
+        <file>PageAuthentication.qml</file>
+        <file>AuthenticationTextInput.qml</file>
+        <file>Assets/Select/EVCS_dial_554x220_top.png</file>
+        <file>Assets/Fonts/TitilliumWeb-Black.ttf</file>
+        <file>Assets/Fonts/TitilliumWeb-Bold.ttf</file>
+        <file>Assets/Fonts/TitilliumWeb-BoldItalic.ttf</file>
+        <file>Assets/Fonts/TitilliumWeb-ExtraLight.ttf</file>
+        <file>Assets/Fonts/TitilliumWeb-ExtraLightItalic.ttf</file>
+        <file>Assets/Fonts/TitilliumWeb-Italic.ttf</file>
+        <file>Assets/Fonts/TitilliumWeb-Light.ttf</file>
+        <file>Assets/Fonts/TitilliumWeb-LightItalic.ttf</file>
+        <file>Assets/Fonts/TitilliumWeb-Regular.ttf</file>
+        <file>Assets/Fonts/TitilliumWeb-SemiBold.ttf</file>
+        <file>Assets/Fonts/TitilliumWeb-SemiBoldItalic.ttf</file>
     </qresource>
 </RCC>
