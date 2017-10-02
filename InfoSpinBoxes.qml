@@ -127,7 +127,7 @@ Item {
     {
         y: 170
         color: "#979eb6"
-        text: qsTr("Charging Rate 200 Mi/hr 355V 191A")
+        text: qsTr("Charging Rate")+ " 200 Mi/hr 355V 191A"
         font.pixelSize: Variables.fontChargingRate
     }
 

@@ -62,5 +62,9 @@
         <file>Assets/Fonts/TitilliumWeb-Regular.ttf</file>
         <file>Assets/Fonts/TitilliumWeb-SemiBold.ttf</file>
         <file>Assets/Fonts/TitilliumWeb-SemiBoldItalic.ttf</file>
+        <file>Translation/DemoQtWS_de.qm</file>
+        <file>Translation/DemoQtWS_en.qm</file>
+        <file>Translation/DemoQtWS_fr.qm</file>
+        <file>Translation/DemoQtWS_it.qm</file>
     </qresource>
 </RCC>

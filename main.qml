@@ -88,6 +88,34 @@ ApplicationWindow {
             }
         }
 
+        function updateText()
+        {
+            switch (swipeView.currentIndex)
+            {
+            case 0: // Promo page
+                break;
+            case 1:  // PageAutentification
+                footerItem.leftButtonText = qsTr("Cancel")
+                footerItem.rightButtonText = qsTr("Confirm")
+                infoPopup.setDescription( 1 )
+                break;
+            case 2:  // PageChargeSelect
+                footerItem.leftButtonText = qsTr("Back")
+                footerItem.rightButtonText = qsTr("Confirm")
+                infoPopup.setDescription( 2 )
+                break;
+            case 3: // PagePayment
+                footerItem.leftButtonText = qsTr("Back")
+                footerItem.rightButtonText = qsTr("Continue")
+                infoPopup.setDescription( 3 )
+                break;
+            case 4: // PageChargeConfirm
+                footerItem.rightButtonText = qsTr("Done")
+                break;
+            }
+
+        }
+
         onCurrentIndexChanged: {
             footerItem.pageIndicatorcurrentIndex = swipeView.currentIndex - 1
             footerItem.pageIndicatorVisible = swipeView.currentIndex > 0;
@@ -105,26 +133,20 @@ ApplicationWindow {
                 footerItem.leftButtonVisible  = 1
                 footerItem.rightButtonVisible = 1
                 footerItem.rightButtonEnabled = 1
-                footerItem.leftButtonText = qsTr("Cancel")
-                footerItem.rightButtonText = qsTr("Confirm")
                 infoPopup.setDescription( 1 )
                 break;
             case 2:  // PageChargeSelect
                 footerItem.leftButtonVisible = 1
                 footerItem.leftButtonEnabled = 1
-                footerItem.leftButtonText = qsTr("Back")
                 footerItem.rightButtonVisible = 1
                 footerItem.rightButtonEnabled = ( pageChargeSelect.dialValue > Variables.initialCharge );
-                footerItem.rightButtonText = qsTr("Confirm")
                 infoPopup.setDescription( 2 )
                 break;
             case 3: // PagePayment
                 footerItem.leftButtonVisible = 1
                 footerItem.leftButtonEnabled = 1
-                footerItem.leftButtonText = qsTr("Back")
                 footerItem.rightButtonVisible = 1
                 footerItem.rightButtonEnabled = 0
-                footerItem.rightButtonText = qsTr("Continue")
                 infoPopup.setDescription( 3 )
                 break;
             case 4: // PageChargeConfirm
@@ -132,7 +154,6 @@ ApplicationWindow {
                 footerItem.leftButtonEnabled = 0
                 footerItem.rightButtonVisible = 1
                 footerItem.rightButtonEnabled = 0
-                footerItem.rightButtonText = qsTr("Done")
                 pageCharging.batteryInfo.topUpCharge = pageChargeSelect.dialValue
                 pageCharging.batteryInfo.chargingStarted = true;
                 pageCharging.batteryInfo.initialCharge = Variables.initialCharge
@@ -140,6 +161,12 @@ ApplicationWindow {
                 infoPopup.setDescription( 4 )
                 break;
             }
+            updateText();
+        }
+
+        Component.onCompleted:
+        {
+            translation.languageChanged.connect(updateText);
         }
     }
 

@@ -1,6 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include <QFontDatabase>
+#include "TranslationSelect.h"
 
 int main(int argc, char *argv[])
 {
@@ -25,8 +27,11 @@ int main(int argc, char *argv[])
     QGuiApplication::setFont(font);
 
     qmlRegisterSingletonType(QUrl("qrc:///Variables.qml"), "App", 1, 0, "Variables");
-
     QQmlApplicationEngine engine;
+    TranslationSelect translation;
+    engine.rootContext()->setContextProperty( "translation", (QObject*)&translation);
+    QObject::connect( &translation, &TranslationSelect::languageChanged,
+                      &engine, &QQmlApplicationEngine::retranslate );
     engine.load(QUrl(QLatin1String("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
