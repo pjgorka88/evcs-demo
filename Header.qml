@@ -1,6 +1,7 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+import App 1.0
 
 Item {
 
@@ -27,7 +28,7 @@ Item {
             verticalAlignment: Text.AlignVCenter
             color: "#ffffff"
             text: qsTr("Electric charging station")
-            font.pointSize: 18
+            font.pixelSize: Variables.fontHeader
             font.bold: true
         }
     }

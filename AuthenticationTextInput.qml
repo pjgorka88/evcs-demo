@@ -5,21 +5,20 @@ import App 1.0
 
 Rectangle
 {
-
     property alias textField: textFieldItem
-    width: 200
-    height: 40
+    width: 250
+    height: 45
     color: "#0b2a4a"
     border.color: "#0a0f2c"
-    radius: 10
+    radius: 15
     TextInput
     {
         id: textFieldItem
         anchors.fill: parent
         anchors.leftMargin: 10
-        anchors.topMargin: 5
-        //text: qsTr("Enter")
-        font.pixelSize: 20
+        text: qsTr("Test")
+        font.pixelSize: Variables.fontUserAuth2
+        verticalAlignment: Text.AlignVCenter
         color: "#42cc53"
     }
 }

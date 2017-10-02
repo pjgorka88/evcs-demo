@@ -8,7 +8,7 @@ SpinBox {
     editable: true
     width: 230
     height: 34
-    font.pointSize: Variables.controlSpinFontPoints
+    font.pixelSize: Variables.fontControlSpinBox
 
     property bool indicatorText: true;
 

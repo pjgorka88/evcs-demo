@@ -1,5 +1,6 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.0
+import App 1.0
 
 Page {
     id: root
@@ -27,7 +28,9 @@ Page {
             Text {
                 id: text1
                 text: qsTr("Username:")
-                font.pointSize: 20
+                font.pixelSize: Variables.fontUserAuth
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
                 color: "#0a0f2c"
             }
 
@@ -38,7 +41,9 @@ Page {
             Text {
                 id: text2
                 text: qsTr("Password:")
-                font.pointSize: 20
+                font.pixelSize: Variables.fontUserAuth
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
                 color: "#0a0f2c"
             }
 
@@ -58,7 +63,7 @@ Page {
             contentItem: Label {
                 color: "#00DB52"
                 text: qsTr("USER AUTHENTICATION")
-                font.pixelSize: 18
+                font.pixelSize: Variables.fontTapStart
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
             }

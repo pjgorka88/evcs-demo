@@ -1,7 +1,8 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.2
-import App 1.0
 import QtQuick.Layouts 1.0
+import App 1.0
+
 
 
 Item
@@ -62,7 +63,7 @@ Item
     {
         color: "#ffffff"
         text: qsTr("Total cost")
-        font.pointSize: 24
+        font.pixelSize: Variables.fontTotalCost
         x: 30
         y: 150
     }
@@ -71,7 +72,7 @@ Item
     {
         color: "#ffffff"
         text: Number(Variables.currentPrice / 100).toLocaleString(locale, 'f', 2) + " \u20ac"
-        font.pointSize: 40
+        font.pixelSize: Variables.fontPaymentCost
         x: 30
         y: 190
     }

@@ -19,7 +19,7 @@ Page
         {
             color: "#ffffff"
             text: qsTr("Payment method")
-            font.pointSize: 18
+            font.pixelSize: Variables.fontPayment
             x: 80
             y: 35
         }
@@ -33,9 +33,9 @@ Page
         Text
         {
             id: textEnterPIN
+            font.pixelSize: Variables.fontPayment
             color: "#ffffff"
             text: qsTr("Enter PIN-number:")
-            font.pointSize: 18
             x: 410
             y: 35
         }
@@ -56,7 +56,7 @@ Page
                 id: textField
                 color: "#ffffff"
                 text: ""
-                font.pointSize: 18
+                font.pixelSize: Variables.fontPaymentPin
                 horizontalAlignment: TextInput.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
 

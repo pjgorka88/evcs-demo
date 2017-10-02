@@ -13,6 +13,7 @@ Button
     property int keyId: 16
     property alias buttonText: labelItem.text
     property alias buttonColor: back.color
+    property alias fontSize: labelItem.font.pixelSize
 
 
     background: Rectangle
@@ -30,7 +31,7 @@ Button
         anchors.fill: parent
         color: "#ffffff"
         text: "0"
-        font.pointSize: Variables.fontKeys
+        font.pixelSize: Variables.fontKeys
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
     }

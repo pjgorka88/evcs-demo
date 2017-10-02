@@ -1,6 +1,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.0
 import QtMultimedia 5.8
+import App 1.0
 
 Page {
     id: root
@@ -37,7 +38,7 @@ Page {
             contentItem: Label {
                 color: "#00DB52"
                 text: qsTr("TAP TO START")
-                font.pixelSize: 18
+                font.pixelSize: Variables.fontTapStart
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
             }

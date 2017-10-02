@@ -9,7 +9,7 @@ Button {
 
     height: 53
     width: 150
-    font.pointSize: Variables.footerButtonPoints
+    font.pixelSize: Variables.fontFooterButton
     flat: true
     opacity: 0
 

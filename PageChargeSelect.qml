@@ -37,11 +37,11 @@ Page {
         Text
         {
             anchors.bottom: spinBoxes.top
-            anchors.bottomMargin: 20
+            anchors.bottomMargin: 10
             anchors.left: spinBoxes.left
             color: "#fefefe"
             text: qsTr("Select charging level")
-            font.pointSize: 16
+            font.pixelSize: Variables.fontSelectCharging
         }
 
         DialBase

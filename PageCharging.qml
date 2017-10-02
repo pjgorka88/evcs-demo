@@ -48,7 +48,7 @@ Page {
                 width: 230
                 height: 34
                 x: 20
-                font.pointSize: 16
+                font.pixelSize: Variables.fontChargingProgress
                 horizontalAlignment: Qt.AlignLeft
                 verticalAlignment: Qt.AlignVCenter
             }
@@ -88,11 +88,11 @@ Page {
         Text
         {
             id: infoText
-            x: 120
+            x: 110
             anchors.verticalCenter: parent.verticalCenter
             color: "#42cc53"
             text: "00%"
-            font.pointSize: 38
+            font.pixelSize: Variables.fontChargingPercentage
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
         }

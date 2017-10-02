@@ -1,6 +1,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
+import App 1.0
 
 Popup {
     id: popup
@@ -53,7 +54,7 @@ Popup {
     contentItem: Text {
         id: textId
         color: "#ffffff"
-        font.pointSize: 20
+        font.pixelSize: Variables.fontInfo
         wrapMode: Text.WordWrap
         text: ""
     }
