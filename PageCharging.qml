@@ -10,6 +10,7 @@ Page {
     function initializeValues()
     {
         infoText.text = qsTr( "Charging" )
+        chargingText.text = qsTr( "Charging in progress" )
         battery.initializeValues();
     }
 

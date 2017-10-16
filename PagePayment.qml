@@ -6,101 +6,122 @@ Page
 {
     id: root
     signal paymentAccepted
+    signal paymentCanceled
+    signal helpPage
 
     function initializeValues()
     {
-        textField.clear();
+        padLabel.clear();
+        pinNumberItem.padOpacity = 1;
+        payment.paymentEnabled = true;
     }
 
-    background: Item
+    background: Row
     {
+        anchors.centerIn: parent
+        spacing: 30
 
-        Text
+        Item // The payment method item
         {
-            color: "#ffffff"
-            text: qsTr("Payment method")
-            font.pixelSize: Variables.fontPayment
-            x: 80
-            y: 35
-        }
-        PaymentType
-        {
-            id: payment
-            x: 40
-            y: 70
-        }
-
-        Text
-        {
-            id: textEnterPIN
-            font.pixelSize: Variables.fontPayment
-            color: "#ffffff"
-            text: qsTr("Enter PIN-number:")
-            x: 410
-            y: 35
-        }
-
-        Rectangle
-        {
-            anchors.left: textEnterPIN.right
-            anchors.top: textEnterPIN.top
-            anchors.bottom: textEnterPIN.bottom
-            anchors.leftMargin: 10
-            border.width: 2
-            color: "transparent"
-            radius: 5
-            width: 120
-            Label
+            width: childrenRect.width
+            height: childrenRect.height
+            Text
             {
-                anchors.fill: parent
-                id: textField
+                id: paymentText
                 color: "#ffffff"
-                text: ""
-                font.pixelSize: Variables.fontPaymentPin
-                horizontalAlignment: TextInput.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
+                text: qsTr("Payment method")
+                font.pixelSize: Variables.fontPayment
+                x: 40
+            }
+            PaymentType
+            {
+               id: payment
+               anchors.top: paymentText.bottom
+               anchors.topMargin: 5;
 
-                function clear()
-                {
-                    text = "";
-                }
+               onCardPayment:
+               {
+                   padLabel.clear();
+                   pinNumberItem.padOpacity = 1;
 
-                function insertText( keyId ) {
-                    if ( textField.text.length < 4 )
-                        textField.text = textField.text + "x";
-                }
-
-                function removeText() {
-                    var len = textField.text.length;
-                    console.log( len )
-                    if ( len > 0 )
-                        textField.text = textField.text.substring(0, len - 1);
-                }
+               }
+               onCashPayment:
+               {
+                   pinNumberItem.padOpacity = 0;
+                   pad.confirmText =  qsTr("Insert money");
+                   root.paymentAccepted()
+               }
             }
         }
 
-        PadType
+        Item // The pin number item
         {
-            id: pad
-            anchors.verticalCenter:  payment.verticalCenter
-            anchors.left: payment.right
-            anchors.leftMargin: 40
-            onPressedButton:
+            id: pinNumberItem
+            width: pad.width
+            height: padLabel.height + pad.height
+
+            property real padOpacity: 1
+            Behavior on padOpacity { NumberAnimation { duration: 300 } }
+
+            Text
             {
-                updateTextField( keyId )
+                id: textEnterPIN
+                font.pixelSize: Variables.fontPayment
+                color: "#ffffff"
+                text: qsTr("Enter PIN-number:")
+                x: 40
+                opacity: pinNumberItem.padOpacity;
+
             }
 
-            function updateTextField( keyId )
+            PadLabel
             {
-                switch (keyId) {
-                case 10: textField.clear(); break;
-                case 11: textField.removeText(); break;
-                case 12: break;
-                case 13: root.paymentAccepted(); break;
-                case 14: break;
-                case 15: break;
-                case 16: break;
-                default: textField.insertText(keyId); break;
+                id: padLabel
+                anchors.left: textEnterPIN.right
+                anchors.top: textEnterPIN.top
+                anchors.bottom: textEnterPIN.bottom
+                anchors.leftMargin: 10
+                opacity: pinNumberItem.padOpacity;
+
+                onPinAccepted:
+                {
+                    pad.confirmText =  qsTr("Payment\nAccepted");
+                    pinNumberItem.padOpacity = 0;
+                    root.paymentAccepted();
+                    payment.paymentEnabled = false;
+                }
+
+                onPinCaneled:
+                {
+                    pinNumberItem.padOpacity = 1;
+                    root.paymentCanceled();
+                }
+            }
+
+            PadType
+            {
+                id: pad
+                anchors.top: textEnterPIN.bottom
+                anchors.topMargin: 5;
+                padOpacity: pinNumberItem.padOpacity;
+
+                onPressedButton:
+                {
+                    updateTextField( keyId )
+                }
+
+                function updateTextField( keyId )
+                {
+                    switch (keyId) {
+                    case 10: padLabel.cancelButton(); break;
+                    case 11: padLabel.removeText(); break;
+                    case 12: root.helpPage(); break;
+                    case 13: padLabel.acceptedButton(); break;
+                    case 14: break;
+                    case 15: break;
+                    case 16: break;
+                    default: padLabel.insertText(keyId); break;
+                    }
                 }
             }
         }

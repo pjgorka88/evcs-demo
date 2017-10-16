@@ -1,15 +1,18 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.2
-import App 1.0
 import QtQuick.Layouts 1.0
+import App 1.0
 
 
 Item
 {
+    id: root
     width: 380
     height: 300
+    property real padOpacity: 1
+    property alias confirmText: confirmText.text
 
-    signal pressedButton (int keyId)
+    signal pressedButton(int keyId)
 
     Rectangle
     {
@@ -19,11 +22,22 @@ Item
         opacity: 0.6
     }
 
+    Text
+    {
+        id: confirmText
+        anchors.centerIn: parent;
+        color: "#ffffff"
+        text: qsTr("Payment\nAccepted")
+        font.pixelSize: Variables.fontPaymentCost
+        opacity: 1 - root.padOpacity;
+    }
+
     Row
     {
         x: 20
         y: 20
         spacing: 10
+        opacity: root.padOpacity;
         Column
         {
             spacing: 10

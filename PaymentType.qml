@@ -7,8 +7,13 @@ import App 1.0
 
 Item
 {
+    id: root
     width: 300
     height: 300
+    signal cardPayment()
+    signal cashPayment()
+
+    property bool paymentEnabled: true
 
     Rectangle
     {
@@ -32,31 +37,43 @@ Item
             checked: true
             imageName: "Assets/Payment/amex.png"
             ButtonGroup.group: radioGroup
+            enabled: root.paymentEnabled;
+            onClicked: root.cardPayment()
         }
 
         PaymentCard {
             imageName: "Assets/Payment/discover.png"
             ButtonGroup.group: radioGroup
+            enabled: root.paymentEnabled;
+            onClicked: root.cardPayment()
         }
 
         PaymentCard {
             imageName: "Assets/Payment/jcb.png"
             ButtonGroup.group: radioGroup
+            enabled: root.paymentEnabled;
+            onClicked: root.cardPayment()
         }
 
         PaymentCard {
             imageName: "Assets/Payment/mastercard.png"
             ButtonGroup.group: radioGroup
+            enabled: root.paymentEnabled;
+            onClicked: root.cardPayment()
         }
 
         PaymentCard {
             imageName: "Assets/Payment/money.png"
             ButtonGroup.group: radioGroup
+            enabled: root.paymentEnabled;
+            onClicked: root.cashPayment()
         }
 
         PaymentCard {
             imageName: "Assets/Payment/visa.png"
             ButtonGroup.group: radioGroup
+            enabled: root.paymentEnabled;
+            onClicked: root.cardPayment()
         }
     }
     Text

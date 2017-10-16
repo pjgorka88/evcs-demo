@@ -41,22 +41,29 @@
 <context>
     <name>PadType</name>
     <message>
-        <location filename="../PadType.qml" line="114"/>
+        <location filename="../PadType.qml" line="30"/>
+        <source>Payment
+Accepted</source>
+        <translation>Zahlung
+Akzeptiert</translation>
+    </message>
+    <message>
+        <location filename="../PadType.qml" line="128"/>
         <source>Cancel</source>
         <translation>Stornieren</translation>
     </message>
     <message>
-        <location filename="../PadType.qml" line="124"/>
+        <location filename="../PadType.qml" line="138"/>
         <source>Correct</source>
         <translation>Richtig</translation>
     </message>
     <message>
-        <location filename="../PadType.qml" line="134"/>
+        <location filename="../PadType.qml" line="148"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="../PadType.qml" line="143"/>
+        <location filename="../PadType.qml" line="157"/>
         <source>Enter</source>
         <translation>Eingeben</translation>
     </message>
@@ -95,12 +102,13 @@
         <translation>Aufladung</translation>
     </message>
     <message>
-        <location filename="../PageCharging.qml" line="47"/>
+        <location filename="../PageCharging.qml" line="13"/>
+        <location filename="../PageCharging.qml" line="48"/>
         <source>Charging in progress</source>
         <translation>Aufladung läuft</translation>
     </message>
     <message>
-        <location filename="../PageCharging.qml" line="72"/>
+        <location filename="../PageCharging.qml" line="73"/>
         <source>Charging Complete</source>
         <translation>Aufladung komplett</translation>
     </message>
@@ -108,14 +116,26 @@
 <context>
     <name>PagePayment</name>
     <message>
-        <location filename="../PagePayment.qml" line="21"/>
+        <location filename="../PagePayment.qml" line="32"/>
         <source>Payment method</source>
         <translation>Bezahlverfahren</translation>
     </message>
     <message>
-        <location filename="../PagePayment.qml" line="38"/>
+        <location filename="../PagePayment.qml" line="51"/>
+        <source>Insert money</source>
+        <translation>Geld einlegen</translation>
+    </message>
+    <message>
+        <location filename="../PagePayment.qml" line="71"/>
         <source>Enter PIN-number:</source>
         <translation>PIN-Nummer eingeben:</translation>
+    </message>
+    <message>
+        <location filename="../PagePayment.qml" line="88"/>
+        <source>Payment
+Accepted</source>
+        <translation>Zahlung
+Akzeptiert</translation>
     </message>
 </context>
 <context>
@@ -129,7 +149,7 @@
 <context>
     <name>PaymentType</name>
     <message>
-        <location filename="../PaymentType.qml" line="65"/>
+        <location filename="../PaymentType.qml" line="82"/>
         <source>Total cost</source>
         <translation>Gesamtkosten</translation>
     </message>
@@ -170,29 +190,29 @@
         <translation>Elektrofahrzeug-Ladestation</translation>
     </message>
     <message>
-        <location filename="../main.qml" line="98"/>
+        <location filename="../main.qml" line="97"/>
         <source>Cancel</source>
         <translation>Stornieren</translation>
     </message>
     <message>
-        <location filename="../main.qml" line="99"/>
-        <location filename="../main.qml" line="104"/>
+        <location filename="../main.qml" line="98"/>
+        <location filename="../main.qml" line="103"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
     <message>
-        <location filename="../main.qml" line="103"/>
-        <location filename="../main.qml" line="108"/>
+        <location filename="../main.qml" line="102"/>
+        <location filename="../main.qml" line="107"/>
         <source>Back</source>
         <translation>Zurück</translation>
     </message>
     <message>
-        <location filename="../main.qml" line="109"/>
+        <location filename="../main.qml" line="108"/>
         <source>Continue</source>
         <translation>Fortsetzen</translation>
     </message>
     <message>
-        <location filename="../main.qml" line="113"/>
+        <location filename="../main.qml" line="112"/>
         <source>Done</source>
         <translation>Erledigt</translation>
     </message>

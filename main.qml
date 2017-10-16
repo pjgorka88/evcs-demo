@@ -72,10 +72,9 @@ ApplicationWindow {
         PagePayment
         {
             id: pagePayment
-            onPaymentAccepted:
-            {
-                footerItem.rightButtonEnabled = 1;
-            }
+            onPaymentAccepted: footerItem.rightButtonEnabled = 1;
+            onPaymentCanceled: footerItem.rightButtonEnabled = 0;
+            onHelpPage:  infoPopup.open();
         }
 
         PageCharging
@@ -133,9 +132,11 @@ ApplicationWindow {
                 footerItem.leftButtonVisible  = 1
                 footerItem.rightButtonVisible = 1
                 footerItem.rightButtonEnabled = 1
+                footerItem.leftButtonEnabled  = 1
                 infoPopup.setDescription( 1 )
                 break;
             case 2:  // PageChargeSelect
+                pagePayment.initializeValues();
                 footerItem.leftButtonVisible = 1
                 footerItem.leftButtonEnabled = 1
                 footerItem.rightButtonVisible = 1
@@ -153,11 +154,11 @@ ApplicationWindow {
                 footerItem.leftButtonVisible = 0
                 footerItem.leftButtonEnabled = 0
                 footerItem.rightButtonVisible = 1
-                footerItem.rightButtonEnabled = 0
+                //footerItem.rightButtonEnabled = 0 // Easier to demostrate the demo
+                pageCharging.initializeValues();
                 pageCharging.batteryInfo.topUpCharge = pageChargeSelect.dialValue
                 pageCharging.batteryInfo.chargingStarted = true;
                 pageCharging.batteryInfo.initialCharge = Variables.initialCharge
-                pageCharging.initializeValues();
                 infoPopup.setDescription( 4 )
                 break;
             }
