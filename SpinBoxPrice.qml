@@ -1,5 +1,6 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.1
+import App 1.0
 
 SpinBoxBase
 {
@@ -23,5 +24,16 @@ SpinBoxBase
 
     valueFromText: function(text, locale) {
         return Number.fromLocaleString(locale, text.substring(0, text.lenght-2)) * 100
+    }
+
+    Rectangle
+    {
+        color: "transparent"
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        border.color: "#41CD52"
+        border.width: Variables.pixelBorderSpinBox
     }
 }

@@ -1,7 +1,6 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
-import QtQuick.VirtualKeyboard 2.1
 import App 1.0
 
 ApplicationWindow {
@@ -15,15 +14,9 @@ ApplicationWindow {
 
     header: Header {
         height: 50
-         onOpenInfo:
-         {
-            infoPopup.open();
-         }
-
-         onOpenMap:
-         {
-             mapPopup.open();
-         }
+        onOpenInfo: infoPopup.open();
+        onOpenMap: mapPopup.open();
+        onOpenWarning: warningPopup.open();
     }
 
     PopupInfo
@@ -34,6 +27,11 @@ ApplicationWindow {
     PopupMap
     {
         id: mapPopup
+    }
+
+    PopupWarning
+    {
+        id: warningPopup
     }
 
     footer: Footer {

@@ -19,7 +19,6 @@
         <file>PagePromotionSpot.qml</file>
         <file>PageChargeSelect.qml</file>
         <file>Assets/Select/EVCS_charge_icon_20x40.png</file>
-        <file>Assets/Select/EVCS_dial_554x220.png</file>
         <file>Assets/Select/EVCS_dial_button_16x16.png</file>
         <file>SpinBoxBase.qml</file>
         <file>InfoSpinBoxes.qml</file>
@@ -50,7 +49,6 @@
         <file>Assets/Promo/Promo01.mp4</file>
         <file>PageAuthentication.qml</file>
         <file>AuthenticationTextInput.qml</file>
-        <file>Assets/Select/EVCS_dial_554x220_top.png</file>
         <file>Assets/Fonts/TitilliumWeb-Black.ttf</file>
         <file>Assets/Fonts/TitilliumWeb-Bold.ttf</file>
         <file>Assets/Fonts/TitilliumWeb-BoldItalic.ttf</file>
@@ -67,5 +65,12 @@
         <file>Translation/DemoQtWS_fr.qm</file>
         <file>Translation/DemoQtWS_it.qm</file>
         <file>PadLabel.qml</file>
+        <file>Assets/Icons/EVCS_icon_attention_30x31.png</file>
+        <file>PopupWarning.qml</file>
+        <file>Assets/Select/EVCS_dial_info.png</file>
+        <file>Assets/Select/EVCS_TopLine.png</file>
+        <file>Assets/Select/dial_inside_bottom_240x240.png</file>
+        <file>Assets/Select/dial_outside_top_240x240.png</file>
+        <file>SwitchBase.qml</file>
     </qresource>
 </RCC>

@@ -20,8 +20,8 @@ Popup {
 
     Component.onCompleted:
     {
-        point.center =QtPositioning.coordinate(52.520686, 13.41638)
-        locationData.center =QtPositioning.coordinate(52.520686, 13.41638)
+        point.center = QtPositioning.coordinate(52.520686, 13.41638)
+        locationData.center = QtPositioning.coordinate(52.520686, 13.41638)
     }
 
     background:Rectangle

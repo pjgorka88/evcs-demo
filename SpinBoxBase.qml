@@ -6,8 +6,6 @@ SpinBox {
     id: control
     value: 0
     editable: true
-    width: 230
-    height: 34
     font.pixelSize: Variables.fontControlSpinBox
 
     property bool indicatorText: true;
@@ -21,7 +19,7 @@ SpinBox {
             z: 4
             text: control.textFromValue(control.value, control.locale)
 
-            leftPadding: 45
+            leftPadding: Variables.pixelSpinBoxButton + 5
             font: control.font
             color: "#42cc53"
             horizontalAlignment: Qt.AlignLeft
@@ -32,8 +30,8 @@ SpinBox {
     up.indicator: Rectangle {
         x: control.mirrored ? 0 : parent.width - width
         height: parent.height
-        implicitWidth: 34
-        implicitHeight: 34
+        implicitWidth: Variables.pixelSpinBoxButton
+        implicitHeight: Variables.pixelSpinBoxButton
         color: "#0a0f2c"
         border.color: "#0b2a4a"
 
@@ -52,8 +50,8 @@ SpinBox {
     down.indicator: Rectangle {
         x: control.mirrored ? parent.width - width : 0
         height: parent.height
-        implicitWidth: 34
-        implicitHeight: 34
+        implicitWidth: Variables.pixelSpinBoxButton
+        implicitHeight: Variables.pixelSpinBoxButton
         color: "#0a0f2c"
         border.color: "#0b2a4a"
 
@@ -71,6 +69,4 @@ SpinBox {
     background: Rectangle {
         border.color: "#0b2a4a"
     }
-
-
 }

@@ -8,6 +8,7 @@ Item {
     id: header
     signal openInfo
     signal openMap
+    signal openWarning
 
 // Left Positioner
     RowLayout
@@ -149,6 +150,20 @@ Item {
             }
             flat: true
             onClicked: header.openMap();
+        }
+
+
+        Button
+        {
+            Layout.preferredWidth: 38
+            Layout.preferredHeight: 31
+            background: Image {
+                anchors.fill: parent
+                fillMode: Image.PreserveAspectFit
+                source: "Assets/Icons/EVCS_icon_attention_30x31.png"
+            }
+            flat: true
+            onClicked: header.openWarning();
         }
 
         Button

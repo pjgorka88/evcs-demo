@@ -10,7 +10,7 @@ Page {
     function initializeValues()
     {
         infoText.text = qsTr( "Charging" )
-        chargingText.text = qsTr( "Charging in progress" )
+        spinBoxes.chargingText = qsTr( "Charging in progress" )
         battery.initializeValues();
     }
 
@@ -22,45 +22,44 @@ Page {
         spinBoxes.chargingVisible = false;
     }
 
-    background: Item {
+    background: RowLayout  {
+        spacing: 40
+        anchors.centerIn: parent
 
         Image {
-            x: 40
-            y: 60
-            width: 554
-            height: 240
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredHeight: 240
+            Layout.preferredWidth: 240
             fillMode: Image.PreserveAspectFit
-            source: "Assets/Select/EVCS_dial_554x220_top.png"
+            source: "Assets/Select/dial_outside_top_240x240.png"
+
+            Text
+            {
+                id: infoText
+                anchors.centerIn: parent
+                color: "#42cc53"
+                text: "00%"
+                font.pixelSize: Variables.fontChargingPercentage
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+            }
         }
+
 
         InfoSpinBoxes
         {
             id: spinBoxes
-            x:360
-            y:103
-            width:230
-            height: 150
-
-            Text
-            {
-                id: chargingText
-                color: "#42cc53"
-                text: qsTr( "Charging in progress" )
-                width: 230
-                height: 34
-                x: 20
-                font.pixelSize: Variables.fontChargingProgress
-                horizontalAlignment: Qt.AlignLeft
-                verticalAlignment: Qt.AlignVCenter
-            }
-
+            Layout.preferredWidth: Variables.pixelSpinBoxWidth
+            Layout.preferredHeight: 180
+            Layout.alignment: Qt.AlignCenter
         }
 
         Battery
         {
             id: battery
-            x: 650
-            y: 40
+            Layout.preferredWidth: 100
+            Layout.preferredHeight: 280
+            Layout.alignment: Qt.AlignCenter
 
             onChargedPercentageChanged :
             {
@@ -70,7 +69,7 @@ Page {
             onSignalChargeCompleted:
             {
                 updateSpinBoxes( chargedPercentage )
-                chargingText.text = qsTr( "Charging Complete" )
+                spinBoxes.chargingText = qsTr( "Charging Complete" )
                 root.signalChargeCompleted();
             }
 
@@ -84,18 +83,6 @@ Page {
                 spinBoxes.setTimeValue( ( battery.topUpCharge - value ) * Variables.timeOnePercent * 100 )
                 spinBoxes.setPriceValue( ( value - battery.initialCharge) * Variables.priceOnePercent * 100 )
             }
-        }
-
-        Text
-        {
-            id: infoText
-            x: 110
-            anchors.verticalCenter: parent.verticalCenter
-            color: "#42cc53"
-            text: "00%"
-            font.pixelSize: Variables.fontChargingPercentage
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
         }
     }
 }

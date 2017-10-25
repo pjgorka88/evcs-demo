@@ -8,7 +8,7 @@ QtObject  {
     readonly property double timeOnePercent:  0.2
     readonly property double timeToComplete:  60000
 
-    readonly property real   fontHeader: 25
+    readonly property real   fontHeader: 22
     readonly property real   fontFooterButton: 25
     readonly property real   fontTapStart: 18
     readonly property real   fontUserAuth: 30
@@ -25,6 +25,10 @@ QtObject  {
     readonly property real   fontPaymentCost: 50
     readonly property real   fontChargingProgress: 20
     readonly property real   fontChargingPercentage: 60
+
+    readonly property int    pixelBorderSpinBox: 3
+    readonly property int    pixelSpinBoxButton: 40
+    readonly property int    pixelSpinBoxWidth: 240
 
     property double currentPrice: 0
     property double wantedCharge: 0

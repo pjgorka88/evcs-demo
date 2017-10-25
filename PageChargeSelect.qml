@@ -15,42 +15,16 @@ Page {
         spinBoxes.updateValues( dial.value )
     }
 
-    background: Item {
-        Image {
-            x: 40
-            y: 60
-            width: 554
-            height: 240
-            fillMode: Image.PreserveAspectFit
-            source: "Assets/Select/EVCS_dial_554x220.png"
-        }
-
-        Image {
-            x: 150
-            y: 160
-            width: 20
-            height: 40
-            fillMode: Image.PreserveAspectFit
-            source: "Assets/Select/EVCS_charge_icon_20x40.png"
-        }
-
-        Text
-        {
-            anchors.bottom: spinBoxes.top
-            anchors.bottomMargin: 10
-            anchors.left: spinBoxes.left
-            color: "#fefefe"
-            text: qsTr("Select charging level")
-            font.pixelSize: Variables.fontSelectCharging
-        }
+    background: RowLayout  {
+        spacing: 40
+        anchors.centerIn: parent
 
         DialBase
         {
             id: dial
-            x: 40
-            y: 60
-            width: 240
-            height: 240
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredHeight: 240
+            Layout.preferredWidth: 240
             from: 0
             to: 100
             onMoved:
@@ -69,10 +43,9 @@ Page {
         InfoSpinBoxes
         {
             id: spinBoxes
-            x:360
-            y:103
-            width:230
-            height: 150
+            Layout.preferredWidth: Variables.pixelSpinBoxWidth
+            Layout.preferredHeight: 180
+            Layout.alignment: Qt.AlignCenter
 
             onValueChanged:
             {
@@ -82,13 +55,22 @@ Page {
             {
                 Variables.currentPrice = value;
             }
+
+            Text
+            {
+                anchors.bottom: spinBoxes.top
+                anchors.bottomMargin: 8
+                color: "#fefefe"
+                text: qsTr("Select charging level")
+                font.pixelSize: Variables.fontSelectCharging
+            }
         }
 
         Battery
         {
-            id: batt
-            x: 650
-            y: 40
+            Layout.preferredWidth: 100
+            Layout.preferredHeight: 280
+            Layout.alignment: Qt.AlignCenter
             topUpCharge: dial.value
         }
     }

@@ -1,5 +1,6 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.1
+import App 1.0
 
 SpinBoxBase
 {
@@ -28,5 +29,16 @@ SpinBoxBase
         var posH = text.indexOf('m')
         var posM = text.indexOf('s')
         return Number.fromLocaleString(locale, text.substring(0, posH)) * 60 + Number.fromLocaleString(locale, text.substring(posH + 1, posM))
+    }
+
+    Rectangle
+    {
+        color: "transparent"
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        border.color: "#41CD52"
+        border.width: Variables.pixelBorderSpinBox
     }
 }

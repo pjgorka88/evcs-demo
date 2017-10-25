@@ -1,5 +1,6 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.1
+import QtQuick.Layouts 1.3
 import App 1.0
 
 Item {
@@ -10,6 +11,7 @@ Item {
     property bool indicatorText: true;
 
     property alias chargingVisible: chargeSpinBox.visible
+    property alias chargingText: chargingText.text
 
     function setChargeValue( value )
     {
@@ -53,79 +55,109 @@ Item {
         priceSpinBox.stepSize  = Variables.priceOnePercent * value
     }
 
-    SpinBoxNumber
+    ColumnLayout
     {
-        id: chargeSpinBox
-        indicatorText: root.indicatorText
-        function updateValue( inValue )
+        spacing: 30
+        id: spinBoxColumn
+
+        Rectangle
         {
-            chargeSpinBox.value = inValue * 100
+            color: "#0b2a4a"
+            border.color: "#41CD52"
+            border.width: Variables.pixelBorderSpinBox
+            Layout.preferredWidth: Variables.pixelSpinBoxWidth
+            height: Variables.pixelSpinBoxButton
+            visible: !root.chargingVisible
+
+            Text
+            {
+                id: chargingText
+                color: "#42cc53"
+                height: Variables.pixelSpinBoxButton
+                text: qsTr( "Charging in progress" )
+                font.pixelSize: Variables.fontChargingProgress
+                horizontalAlignment: Qt.AlignLeft
+                verticalAlignment: Qt.AlignVCenter
+                x:20
+            }
         }
 
-        onValueModified:
+        SpinBoxNumber
         {
-            var sendValue = value / 100;
-            root.valueChanged( sendValue )
-            timeSpinBox.updateValue( sendValue )
-            priceSpinBox.updateValue( sendValue )
+            Layout.preferredWidth: Variables.pixelSpinBoxWidth
+            id: chargeSpinBox
+            indicatorText: root.indicatorText
+            function updateValue( inValue )
+            {
+                chargeSpinBox.value = inValue * 100
+            }
 
-        }
-    }
-
-    SpinBoxTime
-    {
-        id: timeSpinBox
-        indicatorText: root.indicatorText
-        y: 60
-
-        function updateValue( inValue )
-        {
-            var chargeToAdd = inValue - Variables.initialCharge
-            timeSpinBox.value = chargeToAdd * Variables.timeOnePercent * 100
+            onValueModified:
+            {
+                var sendValue = value / 100;
+                root.valueChanged( sendValue )
+                timeSpinBox.updateValue( sendValue )
+                priceSpinBox.updateValue( sendValue )
+            }
         }
 
-        onValueModified:
+        SpinBoxTime
         {
-            var chargeToAdd  = value / ( Variables.timeOnePercent * 100 )
-            var sendValue = chargeToAdd + Variables.initialCharge;
-            root.valueChanged(  sendValue )
-            chargeSpinBox.updateValue( sendValue )
-            priceSpinBox.updateValue( sendValue )
+            id: timeSpinBox
+            indicatorText: root.indicatorText
+            Layout.preferredWidth: Variables.pixelSpinBoxWidth
 
-        }
-    }
+            function updateValue( inValue )
+            {
+                var chargeToAdd = inValue - Variables.initialCharge
+                timeSpinBox.value = chargeToAdd * Variables.timeOnePercent * 100
+            }
 
-    SpinBoxPrice
-    {
-        id: priceSpinBox
-        indicatorText: root.indicatorText
-        y: 119
-        stepSize: Variables.timeOnePercent * 100
+            onValueModified:
+            {
+                var chargeToAdd  = value / ( Variables.timeOnePercent * 100 )
+                var sendValue = chargeToAdd + Variables.initialCharge;
+                root.valueChanged(  sendValue )
+                chargeSpinBox.updateValue( sendValue )
+                priceSpinBox.updateValue( sendValue )
 
-        function updateValue( inValue )
-        {
-            var chargeToAdd = inValue - Variables.initialCharge
-            priceSpinBox.value = chargeToAdd * Variables.priceOnePercent * 100
-        }
-
-        onValueChanged:
-        {
-            priceChanged( value )
+            }
         }
 
-        onValueModified:
+        SpinBoxPrice
         {
-            var chargeToAdd  = value / ( Variables.priceOnePercent * 100 )
-            var sendValue = chargeToAdd + Variables.initialCharge;
-            root.valueChanged( sendValue )
-            chargeSpinBox.updateValue( sendValue )
-            timeSpinBox.updateValue( sendValue )
+            id: priceSpinBox
+            indicatorText: root.indicatorText
+            stepSize: Variables.timeOnePercent * 100
+            Layout.preferredWidth: Variables.pixelSpinBoxWidth
+
+            function updateValue( inValue )
+            {
+                var chargeToAdd = inValue - Variables.initialCharge
+                priceSpinBox.value = chargeToAdd * Variables.priceOnePercent * 100
+            }
+
+            onValueChanged:
+            {
+                priceChanged( value )
+            }
+
+            onValueModified:
+            {
+                var chargeToAdd  = value / ( Variables.priceOnePercent * 100 )
+                var sendValue = chargeToAdd + Variables.initialCharge;
+                root.valueChanged( sendValue )
+                chargeSpinBox.updateValue( sendValue )
+                timeSpinBox.updateValue( sendValue )
+            }
         }
+
     }
 
     Text
     {
-        y: 170
+        anchors.top: spinBoxColumn.bottom
+        anchors.topMargin: 8
         color: "#979eb6"
         text: qsTr("Charging Rate")+ " 200 Mi/hr 355V 191A"
         font.pixelSize: Variables.fontChargingRate
