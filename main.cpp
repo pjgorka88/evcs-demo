@@ -3,6 +3,12 @@
 #include <QQmlContext>
 #include <QFontDatabase>
 #include "TranslationSelect.h"
+#include "AzureEvent.h"
+#ifdef DEF_USE_AZURE
+    #include "AzureConnection.h"
+#endif
+
+static const char* connectionString = "";
 
 int main(int argc, char *argv[])
 {
@@ -30,6 +36,14 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     TranslationSelect translation;
     engine.rootContext()->setContextProperty( "translation", (QObject*)&translation);
+    CAzureEvent aev;
+    engine.rootContext()->setContextProperty( "azureEvent", (QObject*)&aev);
+    #ifdef DEF_USE_AZURE
+        CAzureConnection connection;
+        connection.init(connectionString);
+        QObject::connect(&aev, &CAzureEvent::signalSendEvent,
+                         &connection, &CAzureConnection::slotSendMessage);
+    #endif
 
 #if ( QT_VERSION >= QT_VERSION_CHECK(5, 10, 0) )
     QObject::connect( &translation, &TranslationSelect::languageChanged,
@@ -39,5 +53,9 @@ int main(int argc, char *argv[])
     if (engine.rootObjects().isEmpty())
         return -1;
 
-    return app.exec();
+    int rep = app.exec();
+    #ifdef DEF_USE_AZURE
+        connection.release();
+    #endif
+    return rep;
 }

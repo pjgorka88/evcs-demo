@@ -50,17 +50,16 @@ Dial {
                             uniform sampler2D src;
                             uniform lowp float qt_Opacity;
                             uniform lowp float angle;
-                            void main()
-                            {
-                                float pixelAngle = atan( coord.y - 0.5, coord.x - 0.5 );
-                                if ( ( pixelAngle > angle ) || ( pixelAngle < -2.44346 ) || ( pixelAngle > 2.44346 ) )
+                            void main() {
+
+                                lowp float pixelAngleTan = atan( coord.y - 0.5, coord.x - 0.5 );
+                                if ( ( pixelAngleTan > angle ) || ( pixelAngleTan < -2.44346 ) || ( pixelAngleTan > 2.44346 ) )
                                 {
                                     gl_FragColor = vec4( 0, 0,0, 0);
                                 }
                                 else
                                 {
-                                    lowp vec4 tex0 = texture2D(src, coord);
-                                    gl_FragColor = tex0 * qt_Opacity;
+                                    gl_FragColor = texture2D(src, coord) * qt_Opacity;
                                 }
                             }"
 

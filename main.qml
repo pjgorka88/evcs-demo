@@ -125,6 +125,7 @@ ApplicationWindow {
                 pageChargeSelect.initializeValues();
                 pagePayment.initializeValues();
                 infoPopup.setDescription( 0 )
+                azureEvent.resetAll();
                 break;
             case 1:  // PageAutentification
                 footerItem.leftButtonVisible  = 1
@@ -134,6 +135,7 @@ ApplicationWindow {
                 infoPopup.setDescription( 1 )
                 break;
             case 2:  // PageChargeSelect
+                azureEvent.userName = "test";
                 pagePayment.initializeValues();
                 footerItem.leftButtonVisible = 1
                 footerItem.leftButtonEnabled = 1
@@ -142,6 +144,7 @@ ApplicationWindow {
                 infoPopup.setDescription( 2 )
                 break;
             case 3: // PagePayment
+                azureEvent.charging = Variables.initialCharge;
                 footerItem.leftButtonVisible = 1
                 footerItem.leftButtonEnabled = 1
                 footerItem.rightButtonVisible = 1
@@ -149,6 +152,7 @@ ApplicationWindow {
                 infoPopup.setDescription( 3 )
                 break;
             case 4: // PageChargeConfirm
+                azureEvent.cost = Variables.currentPrice;
                 footerItem.leftButtonVisible = 0
                 footerItem.leftButtonEnabled = 0
                 footerItem.rightButtonVisible = 1
@@ -166,6 +170,7 @@ ApplicationWindow {
         Component.onCompleted:
         {
             translation.languageChanged.connect(updateText);
+            azureEvent.sendEvent();
         }
     }
 

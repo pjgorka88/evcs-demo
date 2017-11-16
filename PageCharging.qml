@@ -64,6 +64,7 @@ Page {
             onChargedPercentageChanged :
             {
                 updateSpinBoxes( chargedPercentage )
+                azureEvent.charging = chargedPercentage;
             }
 
             onSignalChargeCompleted:

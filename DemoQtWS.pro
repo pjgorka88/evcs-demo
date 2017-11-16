@@ -2,7 +2,8 @@ QT += qml quick multimedia
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    TranslationSelect.cpp
+    TranslationSelect.cpp \
+    AzureEvent.cpp
 
 RESOURCES += qml.qrc
 
@@ -23,6 +24,44 @@ TRANSLATIONS += Translation/DemoQtWS_fr.ts
 TRANSLATIONS += Translation/DemoQtWS_de.ts
 TRANSLATIONS += Translation/DemoQtWS_it.ts
 
+AZURE_PATH = C:/Development/Azure-IOT-ARM/azure-iot-sdk-c
+
+equals(TEMPLATE,"vcapp"):exists($$AZURE_PATH) {
+    message("Building with Azure")
+
+    CONFIG(debug, debug|release) {
+        AZURE_BUILD = Debug
+    } else {
+        AZURE_BUILD = Release
+    }
+
+    deployFiles.files += $${AZURE_PATH}/iothub_client/$${AZURE_BUILD}/iothub_client_dll.dll
+    INSTALLS += deployFiles
+
+    LIBS += $${AZURE_PATH}/iothub_client/$${AZURE_BUILD}/iothub_client.lib
+    LIBS += $${AZURE_PATH}/iothub_client/$${AZURE_BUILD}/iothub_client_amqp_transport.lib
+    LIBS += $${AZURE_PATH}/iothub_client/$${AZURE_BUILD}/iothub_client_http_transport.lib
+    LIBS += $${AZURE_PATH}/iothub_client/$${AZURE_BUILD}/iothub_client_amqp_ws_transport.lib
+    LIBS += $${AZURE_PATH}/iothub_client/$${AZURE_BUILD}/iothub_client_mqtt_transport.lib
+    LIBS += $${AZURE_PATH}/iothub_client/$${AZURE_BUILD}/iothub_client_mqtt_ws_transport.lib
+    LIBS += $${AZURE_PATH}/umqtt/$${AZURE_BUILD}/umqtt.lib
+    LIBS += $${AZURE_PATH}/c-utility/$${AZURE_BUILD}/aziotsharedutil.lib
+    LIBS += $${AZURE_PATH}/uamqp/$${AZURE_BUILD}/uamqp.lib
+
+    INCLUDEPATH += $${AZURE_PATH}/iothub_client/../deps/parson
+    INCLUDEPATH += $${AZURE_PATH}/deps/uhttp/deps/c-utility/inc
+    INCLUDEPATH += $${AZURE_PATH}/iothub_client/inc
+    INCLUDEPATH += $${AZURE_PATH}/uamqp/inc
+    INCLUDEPATH += $${AZURE_PATH}/umqtt/inc
+
+    SOURCES += AzureConnection.cpp
+    HEADERS += AzureConnection.h
+
+    DEFINES += DEF_USE_AZURE
+}
+
+
+
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
@@ -36,7 +75,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES +=
 
 HEADERS += \
-    TranslationSelect.h
+    TranslationSelect.h \
+    AzureEvent.h
 
 qtPrepareTool(LRELEASE, lrelease)
 for(tsfile, TRANSLATIONS) {
