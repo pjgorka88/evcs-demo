@@ -19,11 +19,6 @@ QML_DESIGNER_IMPORT_PATH =
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
-TRANSLATIONS += Translation/DemoQtWS_en.ts
-TRANSLATIONS += Translation/DemoQtWS_fr.ts
-TRANSLATIONS += Translation/DemoQtWS_de.ts
-TRANSLATIONS += Translation/DemoQtWS_it.ts
-
 AZURE_PATH = C:/Development/Azure-IOT-ARM/azure-iot-sdk-c
 
 equals(TEMPLATE,"vcapp"):exists($$AZURE_PATH) {
@@ -60,8 +55,6 @@ equals(TEMPLATE,"vcapp"):exists($$AZURE_PATH) {
     DEFINES += DEF_USE_AZURE
 }
 
-
-
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
@@ -78,15 +71,22 @@ HEADERS += \
     TranslationSelect.h \
     AzureEvent.h
 
-qtPrepareTool(LRELEASE, lrelease)
-for(tsfile, TRANSLATIONS) {
- qmfile = $$shadowed($$tsfile)
- qmfile ~= s,.ts$,.qm,
- qmdir = $$dirname(qmfile)
- !exists($$qmdir) {
- mkpath($$qmdir)|error("Aborting.")
- }
- command = $$LRELEASE -removeidentical $$tsfile -qm $$qmfile
- system($$command)|error("Failed to run: $$command")
- TRANSLATIONS_FILES += $$qmfile
-}
+
+TRANSLATIONS += Translation/DemoQtWS_en.ts
+TRANSLATIONS += Translation/DemoQtWS_fr.ts
+TRANSLATIONS += Translation/DemoQtWS_de.ts
+TRANSLATIONS += Translation/DemoQtWS_it.ts
+
+TRANSLATIONS_FILES =
+    qtPrepareTool(LRELEASE, lrelease)
+    for(tsfile, TRANSLATIONS) {
+     qmfile = $$tsfile
+     qmfile ~= s,.ts$,.qm,
+     qmdir = $$dirname(qmfile)
+     !exists($$qmdir) {
+     mkpath($$qmdir)|error("Aborting.")
+     }
+     command = $$LRELEASE -removeidentical $$tsfile -qm $$qmfile
+     system($$command)|error("Failed to run: $$command")
+     TRANSLATIONS_FILES += $$qmfile
+    }
