@@ -107,7 +107,7 @@ Item {
             z: 100
             radius: 10
             border.color: "#00aeea"
-            visible: control.indeterminate
+            visible: true
             Item {
                 anchors.fill: parent
                 anchors.margins: 3
@@ -126,7 +126,7 @@ Item {
                         from: -40 ; to: 0
                         loops: Animation.Infinite
                         duration:350
-                        running: control.indeterminate
+                        running: true
                     }
                 }
             }
