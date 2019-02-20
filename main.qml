@@ -6,8 +6,8 @@ import App 1.0
 ApplicationWindow {
     id: mainWindow
     visible: true
-    width: 800
-    height: 480
+    width: 1024
+    height: 768
     title: qsTr("Electric Vehicle Charging Station")
 
     background: Image { source: "Assets/Background/EVCS_UI_background_800x480.jpg" }
@@ -36,11 +36,12 @@ ApplicationWindow {
 
     footer: Footer {
         id: footerItem
-        height: 63
+        height: 300
         pageIndicatorcount: swipeView.count - 1
         onRightButtonReleased: swipeView.currentIndex == (swipeView.count-1) ? swipeView.setCurrentIndex(0) : swipeView.incrementCurrentIndex()
         onLeftButtonReleased: swipeView.decrementCurrentIndex()
     }
+
 
     SwipeView {
         id: swipeView

@@ -19,13 +19,14 @@ Item {
     property alias pageIndicatorVisible: pageIndicator.opacity
 
     RowLayout {
-        anchors.fill: parent
-
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: 1024
+        height: 64
         FooterButton {
             id: leftButton
             Layout.preferredWidth: 150
             Layout.preferredHeight: 56
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
             text: qsTr("Cancel")
             buttonImage: "Assets/Buttons/blue_btn_171x42.png"
             onReleased: footer.leftButtonReleased()
@@ -34,17 +35,102 @@ Item {
         PageIndicator {
             id: pageIndicator
             opacity: 0
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
         }
 
         FooterButton {
             id: rightButton
             Layout.preferredWidth: 150
             Layout.preferredHeight: 56
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
             buttonImage: "Assets/Buttons/green_btn_171x42.png"
             text: qsTr("Confirm")
             onReleased: footer.rightButtonReleased()
         }
+    }
+    Rectangle {
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: 1000
+        height: 220
+        y:70
+        radius: 2
+        color: "#800d2e50"
+
+        Image {
+            id: logofmu
+            x: 0
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: 280
+            visible: true
+            fillMode: Image.PreserveAspectFit
+            source: "Assets/Icons/EVCS_FMU_logo.png"
+        }
+
+        Text {
+            id: welcome
+            height: parent.height
+            width: parent.width - 10
+            color: "#ffffff"
+            wrapMode: Text.WordWrap
+            text: "Welcome in the first version of the electrical vehicle charging station. This version support only one language and doesn't include yet support for credit cards. The next version will include multiple languages!!!"
+            x: 10
+            y: 60
+            font.pointSize: 14
+        }
+
+        Text {
+            id: updatingmessage
+            color: "#ffffff"
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: "Updating to a new version in 2 minutes!"
+            y: 150
+            font.pointSize: 14
+        }
+
+        Text {
+            id: step
+            color: "#ffffff"
+            anchors.right: parent.right
+            text: "Step 1/3 "
+            y: 190
+            font.pointSize: 14
+        }
+
+        Rectangle {
+            y: 180
+            width: 400
+            anchors.horizontalCenter: parent.horizontalCenter
+            id: control
+            height: 20
+            z: 100
+            radius: 10
+            border.color: "#00aeea"
+            visible: control.indeterminate
+            Item {
+                anchors.fill: parent
+                anchors.margins: 3
+                clip: true
+                Row {
+                    z: 10
+                    Repeater {
+                        Rectangle {
+                            radius: 2
+                            color: index % 2 ? "#ffffff" : "#00aeea"
+                            width: 20 ; height: control.height
+                        }
+                        model: control.width / 20 + 2
+                    }
+                    XAnimator on x {
+                        from: -40 ; to: 0
+                        loops: Animation.Infinite
+                        duration:350
+                        running: control.indeterminate
+                    }
+                }
+            }
+
+        }
+
+
     }
 }

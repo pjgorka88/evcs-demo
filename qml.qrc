@@ -72,5 +72,6 @@
         <file>Assets/Select/dial_inside_bottom_240x240.png</file>
         <file>Assets/Select/dial_outside_top_240x240.png</file>
         <file>SwitchBase.qml</file>
+        <file>Assets/Icons/EVCS_FMU_logo.png</file>
     </qresource>
 </RCC>
