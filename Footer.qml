@@ -75,7 +75,7 @@ Item {
             text: "Welcome in the first version of the electrical vehicle charging station. This version support only one language and doesn't include yet support for credit cards. The next version will include multiple languages!!!"
             x: 10
             y: 60
-            font.pointSize: 14
+            font.pointSize: 12
         }
 
         Text {
@@ -84,16 +84,18 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             text: "Updating to a new version in 2 minutes!"
             y: 150
-            font.pointSize: 14
+            font.pointSize: 12
         }
 
         Text {
             id: step
             color: "#ffffff"
             anchors.right: parent.right
-            text: "Step 1/3 "
-            y: 190
-            font.pointSize: 14
+            anchors.bottom: parent.bottom
+            anchors.rightMargin: 10
+            anchors.bottomMargin: 5
+            text: "Step 1/3"
+            font.pointSize: 12
         }
 
         Rectangle {
