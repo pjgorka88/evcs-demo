@@ -83,7 +83,7 @@ Item {
             color: "#ffffff"
             anchors.horizontalCenter: parent.horizontalCenter
             text: "Updating to a new version in 2 minutes!"
-            y: 150
+            y: 145
             font.pointSize: 12
         }
 
