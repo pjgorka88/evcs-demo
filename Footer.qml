@@ -82,7 +82,7 @@ Item {
             id: updatingmessage
             color: "#ffffff"
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "Updating to a new version in 2 minutes!"
+            text: "Updating to a new version in 30 seconds!"
             y: 145
             font.pointSize: 12
         }
