@@ -72,7 +72,7 @@ Item {
             width: parent.width - 10
             color: "#ffffff"
             wrapMode: Text.WordWrap
-            text: "Welcome in the first version of the electrical vehicle charging station. This version support only one language and doesn't include yet support for credit cards. The next version will include multiple languages!!!"
+            text: "Welcome to the third version of the electrical vehicle charging station. This version supports multiple languages and includes support for credit cards. It is the last version of this demo."
             x: 10
             y: 60
             font.pointSize: 12
@@ -94,7 +94,7 @@ Item {
             anchors.bottom: parent.bottom
             anchors.rightMargin: 10
             anchors.bottomMargin: 5
-            text: "Step 1/3"
+            text: "Step 3/3"
             font.pointSize: 12
         }
 

@@ -28,7 +28,7 @@ Item {
             Layout.leftMargin: 10
             verticalAlignment: Text.AlignVCenter
             color: "#ffffff"
-            text: qsTr("Electric charging station")
+            text: qsTr("Electric charging station in a RUNC container")
             font.pixelSize: Variables.fontHeader
             font.bold: true
         }
