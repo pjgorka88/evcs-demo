@@ -6,11 +6,12 @@ import QtPositioning 5.6
 
 Popup {
     id: popup
+    width: 680
+    rightMargin: 1
     modal: true
     focus: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-    leftMargin: 100
-    topMargin: 50
+    leftMargin: 60
 
 
     Plugin {
@@ -34,6 +35,7 @@ Popup {
         Map
         {
             id: locationData
+            width: 720
             anchors.fill: parent
             plugin: mapPlugin
             zoomLevel: 16

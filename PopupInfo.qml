@@ -8,7 +8,7 @@ Popup {
     modal: true
     focus: true
     closePolicy: Popup.CloseOnEscape
-    leftMargin: 125
+    leftMargin: 80
     topPadding: 50
     leftPadding: 20
     rightPadding: 140
@@ -25,7 +25,8 @@ Popup {
         qsTr( "Please set the charge that you want achieve using the rotational Knob" ),
         qsTr( "Please add your pin number in order to start the charge" ),
         qsTr( "Charging information status" )
-        ]
+    ]
+    width: 680
 
 
     Component.onCompleted:

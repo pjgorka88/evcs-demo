@@ -5,14 +5,16 @@ import App 1.0
 Page {
     id: root
     signal nextPage
+    width: 720
 
     background: Item {
         anchors.horizontalCenter: parent.horizontalCenter
         y:2
-        width: 760
+        width: 720
         height: 400
         Rectangle {
             id: backRectange
+            width: 720
             anchors.fill: parent
             color: "#B8BBC5"
             opacity: 0.5
@@ -69,6 +71,7 @@ Page {
             }
 
             background: Rectangle {
+                width: 720
                 anchors.fill: parent
                 color: "#0E1039"
             }

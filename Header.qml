@@ -9,6 +9,7 @@ Item {
     signal openInfo
     signal openMap
     signal openWarning
+    width: 720
 
 // Left Positioner
     RowLayout

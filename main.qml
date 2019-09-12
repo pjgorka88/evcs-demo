@@ -6,13 +6,14 @@ import App 1.0
 ApplicationWindow {
     id: mainWindow
     visible: true
-    width: 1024
-    height: 768
+    width: 720
+    height: 1280
     title: qsTr("Electric Vehicle Charging Station")
 
-    background: Image { source: "Assets/Background/EVCS_UI_background_800x480.jpg" }
+    background: Image { fillMode: Image.Stretch; transformOrigin: Item.Center; enabled: true; source: "Assets/Background/EVCS_UI_background_800x480.jpg" }
 
     header: Header {
+        width: 720
         height: 50
         onOpenInfo: infoPopup.open();
         onOpenMap: mapPopup.open();
@@ -36,7 +37,10 @@ ApplicationWindow {
 
     footer: Footer {
         id: footerItem
-        height: 300
+        y: -30
+        width: 720
+        height: 450
+        transformOrigin: Item.Center
         pageIndicatorcount: swipeView.count - 1
         onRightButtonReleased: swipeView.currentIndex == (swipeView.count-1) ? swipeView.setCurrentIndex(0) : swipeView.incrementCurrentIndex()
         onLeftButtonReleased: swipeView.decrementCurrentIndex()
@@ -46,10 +50,11 @@ ApplicationWindow {
     SwipeView {
         id: swipeView
         anchors.fill: parent
-        interactive: false
 
         PagePromotionSpot
         {
+            clip: true
+            visible: true
             onNextPage: swipeView.incrementCurrentIndex()
         }
 
@@ -155,3 +160,9 @@ ApplicationWindow {
     }
 
 }
+
+/*##^##
+Designer {
+    D{i:8;invisible:true}
+}
+##^##*/

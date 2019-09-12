@@ -5,10 +5,12 @@ import App 1.0
 
 Popup {
     id: popup
+    width: 680
+    scale: 1
     modal: true
     focus: true
     closePolicy: Popup.CloseOnEscape
-    leftMargin: 125
+    leftMargin: 80
     topPadding: 50
     leftPadding: 20
     rightPadding: 140
@@ -33,6 +35,9 @@ Popup {
 
     contentItem: Item {
         ColumnLayout {
+            x: 227
+            anchors.verticalCenterOffset: -51
+            anchors.horizontalCenterOffset: -9
             anchors.centerIn: parent
             SwitchBase {
                 text: qsTr("Wi-Fi")
@@ -47,6 +52,7 @@ Popup {
             }
             SwitchBase {
                 text: qsTr("Unknown")
+                Layout.fillWidth: false
             }
         }
     }
