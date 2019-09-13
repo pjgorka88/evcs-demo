@@ -92,8 +92,9 @@ Item {
             color: "#ffffff"
             anchors.horizontalCenter: parent.horizontalCenter
             text: "Updating to a new version in 30 seconds!"
+            anchors.horizontalCenterOffset: 0
             font.family: "Verdana"
-            y: 310
+            y: 305
             font.pointSize: 8
         }
 
@@ -106,7 +107,7 @@ Item {
             anchors.bottomMargin: 5
             text: "Step 1/3"
             font.family: "Verdana"
-            font.pointSize: 6
+            font.pointSize: 7
         }
 
         Rectangle {
